@@ -1,0 +1,53 @@
+To create a form that captures all the required health parameters for the organ donation system, you can use the following structure:
+
+Organ Donation Eligibility Form
+Does the patient have cancer?
+
+ Yes
+ No
+HIV Report (Should be negative)
+
+ Negative
+ Positive
+HBsAg (Hepatitis B) Report (Should be negative)
+
+ Negative
+ Positive
+HCV (Hepatitis C) Report (Should be negative)
+
+ Negative
+ Positive
+Blood Group
+
+ A
+ B
+ AB
+ O
+ Unknown
+Diabetes (Should be negative)
+
+ Negative
+ Positive
+Thyroid Condition (Should be negative)
+
+ Negative
+ Positive
+Ebola Virus Disease (Should be negative)
+
+ Negative
+ Positive
+Creutzfeldt-Jakob Disease (CJD) (Should be negative)
+
+ Negative
+ Positive
+Weight
+
+Please enter your weight (in kg): __________
+(Note: Should not be overweight)
+Do you smoke or consume alcohol?
+Smoking:
+ Yes
+ No
+Alcohol:
+ Yes
+ No

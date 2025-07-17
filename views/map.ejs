@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Map Integration</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            font-family: 'Arial', sans-serif;
+            background: #f0f2f5;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        #searchSection {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+        }
+        #searchInput {
+            width: 250px;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #007bff;
+            margin-right: 10px;
+        }
+        #searchButton {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .notification {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="searchSection">
+        <input type="text" id="searchInput" placeholder="Search for locations..." value="<%= donorHospital || '' %>" />
+        <button id="searchButton">Search</button>
+    </div>
+    <div id="map"></div>
+    <div class="notification" id="notification"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script>
+        var map = L.map('map').setView([22.3039, 70.8022], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        var geocoder = L.Control.geocoder({ defaultMarkGeocode: false })
+            .on('markgeocode', function(e) {
+                var latlng = e.geocode.center;
+                addLocation(latlng);
+                map.setView(latlng, 13);
+            }).addTo(map);
+
+        var control = L.Routing.control({
+            waypoints: [],
+            routeWhileDragging: true,
+            geocoder: L.Control.Geocoder.nominatim(),
+            lineOptions: { styles: [{ color: '#007bff', weight: 6 }] }
+        }).addTo(map);
+
+        function addLocation(latlng) {
+            var waypoints = control.getWaypoints();
+            if (waypoints.length < 2) {
+                waypoints.push(L.latLng(latlng));
+            } else {
+                waypoints[1] = L.latLng(latlng);
+            }
+            control.setWaypoints(waypoints);
+        }
+
+        let recipientHospitalLatLng = null;
+        map.once('locationfound', function(e) {
+            recipientHospitalLatLng = e.latlng;
+            control.setWaypoints([L.latLng(e.latlng)]);
+        });
+
+        map.locate({ setView: true, maxZoom: 16, enableHighAccuracy: true });
+
+        document.getElementById('searchButton').onclick = function() {
+            var address = document.getElementById('searchInput').value;
+            if (address) {
+                localStorage.setItem('destinationAddress', address);
+                startSimulationFromHospital(address);
+                showNotification("Searching for organ from: " + address);
+            }
+        };
+
+        function showNotification(message) {
+            var notification = document.getElementById('notification');
+            notification.innerText = message;
+            notification.style.display = 'block';
+            setTimeout(() => notification.style.display = 'none', 3000);
+        }
+    </script>
+</body>
+</html>

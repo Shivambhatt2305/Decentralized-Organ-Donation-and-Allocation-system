@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/wholeprojectcss.css">
+    <script src="script.js" defer></script>
+    <title>Recipient-Registration</title>
+</head>
+<body class="registration-body">
+    <form action="/registerRecipient" method="POST" class="form">
+        <h1 class="text-center"> Recipient-confirmation-Form</h1>
+
+        <!-- progress-bar -->
+         <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step progress-step-active" data-title="Donor-Details" ></div>
+            <div class="progress-step" data-title="Health"></div>
+            <div class="progress-step" data-title="Consent"></div>
+         </div>
+
+        <!-- steps -->
+     <div class="form-step form-step-active">
+        
+        <div class="input-group">
+            <label for="hospital">Select Hospital:</label>
+            <select id="hospital" name="hospital" required>
+                <option value="" disabled selected>Select a hospital</option>
+                <option value="Rajkot Civil Hospital">Rajkot Civil Hospital</option>
+                <option value="Sterling Hospital">Sterling Hospital</option>
+                <option value="Wockhardt Hospital">Wockhardt Hospital</option>
+                <option value="Aastha Hospital">Aastha Hospital</option>
+                <option value="Nirmal Hospital">Nirmal Hospital</option>
+                <option value="Gokul Hospital">Gokul Hospital</option>
+                <option value="Balaji Hospital">Balaji Hospital</option>
+                <option value="Sunshine Hospital">Sunshine Hospital</option>
+                <option value="Ayush Hospital">Ayush Hospital</option>
+                <option value="Jalaram Hospital">Jalaram Hospital</option>
+                <option value="Shiv Hospital">Shiv Hospital</option>
+                <option value="Shraddha Hospital">Shraddha Hospital</option>
+                <option value="Orchid Hospital">Orchid Hospital</option>
+                <option value="Sunrise Hospital">Sunrise Hospital</option>
+                <option value="Gokul Superspeciality Hospital">Gokul Superspeciality Hospital</option>
+                <option value="Life Care Hospital">Life Care Hospital</option>
+                <option value="BAPS Shastriji Maharaj Hospital">BAPS Shastriji Maharaj Hospital</option>
+                <option value="Medicity Hospital">Medicity Hospital</option>
+                <option value="Saurashtra Kidney Research Institute">Saurashtra Kidney Research Institute</option>
+                <option value="Jeevandeep Hospital">Jeevandeep Hospital</option>
+            </select>
+        </div>
+
+         <!-- Weight Field -->
+        <div class="input-group">
+            <label for="weight">Weight (in kg): </label>
+            <input type="number" id="weight" name="weight" placeholder="Enter weight" required min="0">   
+        </div>
+
+         <div class="">
+            <a href="#" class="nextbutton button width-50 ml-auto">Next</a>  
+        </div>   
+     </div>  
+
+     <!--secondpage-->
+     <div class="form-step">
+
+            <!-- Blood Group -->
+            <div class="input-group">
+                <label for="blood_group">Blood Group: </label>
+            <select id="blood_group" name="blood_group" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="AB">AB</option>
+                <option value="O">O</option>
+            </select>
+            </div>
+           
+            <!-- date-of-birth-->
+            <div class="input-group">
+                <label for="birthdate">Recipient's Of Birth</label>
+                <input type="date" name="birthdate" id="birthdate"/>
+            </div>
+           
+
+     <div class="btns-group">
+        <a href="#" class="prevbutton button ">Previous</a>  
+        <a href="#" class="nextbutton button ">Next</a>  
+    </div>
+    </div>  
+
+    <!-- thirdpage -->
+    <div class="form-step ">    
+
+   
+   <!-- organ to donate --> 
+   <div class="input-group">
+    <label for="organselect">Select the organs:</label><br>
+    <div class="checkbox-group">
+        <label>Heart<input type="checkbox" name="organs" value="heart"></label>
+        <label>kidney<input type="checkbox" name="organs" value="kidney"></label>
+        <label>liver<input type="checkbox" name="organs" value="liver"></label>
+        <label>Lungs<input type="checkbox" name="organs" value="lungs"></label>
+        <label>Pancreas<input type="checkbox" name="organs" value="pancreas"></label>
+        <label>Corneas<input type="checkbox" name="organs" value="corneas"></label>
+    </div>
+</div>
+        
+<div class="input-group">
+    <label for="donation_urgency">Urgency of Donation:</label>
+    <select id="donation_urgency" name="donation_urgency" required>
+      <option value="" disabled selected>Select urgency level</option>
+      <option value="immediate">Immediate (Urgent - Cancer Patient)</option>
+      <option value="within-a-week">Within a Week</option>
+      <option value="within-a-month">Within a Month</option>
+      <option value="flexible">Flexible (No Urgency)</option>
+    </select>
+</div>
+        <div class="btns-group">
+        <a href="#" class="prevbutton button">Previous</a>  
+        <input type="submit" value="Submit" class="button"> 
+    </div>
+ </div>  
+    </form>
+</body>
+</html>

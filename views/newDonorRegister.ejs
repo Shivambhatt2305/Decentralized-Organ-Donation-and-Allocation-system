@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/wholeprojectcss.css">
+    <script src="script.js" defer></script>
+    <title>Donor-Registration</title>
+</head>
+<body class="registration-body">
+    <form action="/register" method="POST" class="form">
+        <h1 class="text-center">Donor Registration-Form</h1>
+              
+        <!-- progress-bar -->
+         <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step progress-step-active" data-title="Donor-Details" ></div>
+            <div class="progress-step" data-title="Health"></div>
+            <div class="progress-step" data-title="Consent"></div>
+         </div>
+         <!-- steps -->
+     <div class="form-step form-step-active">
+            <!-- Adharnumber -->
+            <div class="input-group">
+                <label for="adharnnumber">Donor's Adhar-Number</label>
+                <input type="text" name="adharnumber" id="adharnumber" maxlength="12" />
+            </div>
+            <!-- fullname -->
+            <div class="input-group">
+                <label for="fullname">Donor's FullName</label>
+                <input type="text" name="fullname" id="fullname"/>
+            </div>
+            <!-- date-of-birth -->
+            <div class="input-group">
+                <label for="birthdate">Donor's Date Of Birth</label>
+                <input type="date" name="birthdate" id="birthdate"/>
+            </div>
+            <!-- gender -->
+            <div class="input-group">
+                <label for="gender">Donor's Gender</label>
+                <select name="gender" id="gender">
+                    <option value="">--select--</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+            </div>
+            <!-- address -->
+            <div class="input-group">
+                <label for="address">Donor's Address</label>
+                <textarea id="address" name="address" rows="4" cols="50" maxlength="300"></textarea>
+            </div>
+            
+            <!-- contact -->
+            <div class="input-group">
+                <label for="contact">Donor's Contact</label>
+            <input type="text" id="contact" name="contact"  maxlength="10" required>
+            </div>
+
+         <div class="">
+            <a href="#" class="nextbutton button width-50 ml-auto">Next</a>  
+        </div>   
+     </div>  
+
+     <!--secondpage-->
+     <div class="form-step">
+        <!--blood-group-->
+        <div class="input-group">
+            <label for="blood_type">Blood Type:</label><br>
+         <select id="blood_type" name="blood_type" required>
+             <option value="">Select your blood type</option>
+             <option value="A+">A+</option>
+             <option value="A-">A-</option>
+             <option value="B+">B+</option>
+             <option value="B-">B-</option>
+             <option value="O+">O+</option>
+             <option value="O-">O-</option>
+             <option value="AB+">AB+</option>
+             <option value="AB-">AB-</option>
+           </select>
+        </div>
+
+        <!-- medcical-history -->
+        <div class="input-group">
+            <label for="medical_history">Medical History:</label>
+            <textarea id="medical_history" name="medical_history" rows="4" cols="50" placeholder="Any major illnesses or surgeries?"></textarea>    
+        </div>
+  			
+<!-- concent -->
+<div class="input-group">
+    <label for="consent"> Consent of Donor.</label><br>
+ <select id="consent" name="consent" required>
+    <option value="select">select</option>
+     <option value="yes">yes</option>
+   </select>
+</div>
+
+     <div class="btns-group">
+        <a href="#" class="prevbutton button ">Previous</a>  
+        <a href="#" class="nextbutton button ">Next</a>  
+    </div>
+    </div>  
+
+    <!-- thirdpage -->
+    <div class="form-step ">
+        <div class="input-group">
+            <label for="relationname">Full Name of Authorized Representative</label>
+            <input type="text" id="relationname" name="relationname" required>  
+        </div>
+
+        <!-- relation -->
+        <div class="input-group">
+            <label for="relationship">Relationship to the Donor</label><br>
+              <select id="relationship" name="relationship" required>
+               <option value="spouse">Spouse/Partner</option>
+               <option value="parent">Parent</option>
+               <option value="child">Child</option>
+               <option value="sibling">Sibling</option>
+               <option value="grandparent">Grandparent</option>
+               <option value="grandchild">Grandchild</option>
+               <option value="aunt_uncle">Aunt/Uncle</option>
+               <option value="cousin">Cousin</option>
+               <option value="guardian">Legal Guardian</option>
+               <option value="close_family_friend">Close Family Friend</option>
+             </select></div>
+
+       		         
+        <!-- contact'of the person of your close relation  -->
+        <div class="input-group">
+            <label for="contactrelation">Contact of Authorized Representative: </label>
+            <input type="text" id="contactrelation" name="contactrelation" maxlength="10" required>
+        </div>
+		
+        <div class="input-group">
+            <label for="consent"> Consent of Authorized Representative Person.</label><br>
+         <select id="consent" name="consent" required>
+            <option value="select">select</option>
+             <option value="yes">yes</option>
+           </select>
+        </div>
+
+     <div class="btns-group">
+        <a href="#" class="prevbutton button">Previous</a>  
+        <input type="submit" value="Submit" class="button"> 
+    </div>
+ </div>  
+    </form>
+</body>
+</html>

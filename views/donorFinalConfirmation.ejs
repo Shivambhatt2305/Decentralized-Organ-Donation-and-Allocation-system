@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/wholeprojectcss.css">
+    <script src="script.js" defer></script>
+    <title>Donor-Registration</title>
+</head>
+<body class="registration-body">
+    <form action="/submitDonorConfirmation" method="POST" class="form">
+        <h1 class="text-center">Donor Confirmation-Form</h1>
+
+        <!-- progress-bar -->
+         <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step progress-step-active" data-title="Donor-Details" ></div>
+            <div class="progress-step" data-title="Health"></div>
+            <div class="progress-step" data-title="Consent"></div>
+         </div>
+
+        <!-- steps -->
+     <div class="form-step form-step-active">
+            
+            <!-- Adharnumber -->
+            <div class="input-group">
+                <label for="adharnumber">Donor's Aadhar Number</label>
+                <input type="text" name="adharnumber" id="adharnumber" value="<%= donor.adharnumber %>" readonly />
+            </div>
+
+         <!-- Weight Field -->
+        <div class="input-group">
+            <label for="weight">Weight (in kg): </label>
+            <input type="number" id="weight" name="weight" placeholder="Enter weight" required min="0">   
+        </div>
+
+         <div class="">
+            <a href="#" class="nextbutton button width-50 ml-auto">Next</a>  
+        </div>   
+     </div>  
+
+     <!--secondpage-->
+     <div class="form-step">
+
+            <!-- Blood Group -->
+            <div class="input-group">
+                <label for="blood_group">Blood Group: </label>
+            <select id="blood_group" name="blood_group" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="AB">AB</option>
+                <option value="O">O</option>
+            </select>
+            </div>
+
+            <div class="input-group">
+                <label for="hospital">Select Hospital:</label>
+                <select id="hospitalDropdown" name="hospital" onchange="setHospitalAddress()" required>
+                    <option value="" disabled selected>Select a hospital</option>
+                    <!-- Populate hospitals dynamically from backend -->
+                    <% hospitals.forEach(hospital => { %>
+                        <option value="<%= hospital.hospital_name %>" data-address="<%= hospital.address %>">
+                            <%= hospital.hospital_name %>
+                        </option>
+                    <% }); %>
+                </select>
+            </div>
+            
+            <!-- Hospital Address (auto-filled) -->
+            <div class="input-group">
+                <label for="hospital_address">Hospital Address:</label>
+                <input type="text" id="hospitalAddress" name="hospital_address" readonly>
+            </div>
+            <!-- time of brain death -->
+            <label for="time_of_death">Time of Death: </label>
+            <input type="datetime-local" id="time_of_death" name="time_of_death" required>
+            <br><br>
+        
+     <div class="btns-group">
+        <a href="#" class="prevbutton button ">Previous</a>  
+        <a href="#" class="nextbutton button ">Next</a>  
+    </div>
+    </div>  
+
+    <!-- thirdpage -->
+    <div class="form-step ">     
+        
+  
+   <!-- organ to donate --> 
+    <div class="input-group">
+    <label for="organselect">Select the organs:</label><br>
+    <div class="checkbox-group">
+        <label>Heart<input type="checkbox" name="organs" value="heart"></label>
+        <label>kidney<input type="checkbox" name="organs" value="kidney"></label>
+        <label>liver<input type="checkbox" name="organs" value="liver"></label>
+        <label>Lungs<input type="checkbox" name="organs" value="lungs"></label>
+        <label>Pancreas<input type="checkbox" name="organs" value="pancreas"></label>
+        <label>Corneas<input type="checkbox" name="organs" value="corneas"></label>
+    </div>
+</div>
+
+
+<div class="input-group">
+    <label for="donation_urgency">Urgency of Donation:</label>
+    <select id="donation_urgency" name="donation_urgency" required>
+      <option value="" disabled selected>Select urgency level</option>
+      <option value="Immediate">Immediate (Urgent - Cancer Patient)</option>
+      <option value="Within a Week">Within a Week</option>
+      <option value="Within a Month">Within a Month</option>
+      <option value="Flexible">Flexible (No Urgency)</option>
+    </select>
+</div>
+
+      <!-- concent -->
+      <div class="input-group">
+        <label for="consent"> Consent of Donor.</label><br>
+     <select id="consent" name="consent" required>
+        <option value="select">select</option>
+         <option value="yes">yes</option>
+       </select>
+    </div>
+
+    <!-- family's concent -->
+    <div class="input-group">
+        <label for="consent"> Consent of Donor's Family.</label><br>
+     <select id="consent" name="consent" required>
+        <option value="select">select</option>
+         <option value="yes">yes</option>
+       </select>
+    </div>
+
+        <div class="btns-group">
+        <a href="#" class="prevbutton button">Previous</a>  
+        <input type="submit" value="Submit" class="button"> 
+    </div>
+ </div>  
+    </form>
+
+    <script>
+        function setHospitalAddress() {
+            const dropdown = document.getElementById('hospitalDropdown');
+            const selectedOption = dropdown.options[dropdown.selectedIndex];
+            const address = selectedOption.getAttribute('data-address');
+            
+            document.getElementById('hospitalAddress').value = address;
+        }
+    </script>
+</body>
+</html>

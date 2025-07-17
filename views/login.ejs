@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-in page</title>
+    <link rel="stylesheet" href="wholeprojectcss.css">
+    <link rel="stylesheet" href="script.js">
+</head>
+<body> 
+        <!-- Adharnumber -->
+     <div class="center">
+        <form action="/authenticateDonor" method="POST">
+            <h1 class="text-center">Authentication</h1><br>
+            <div class="box">
+                <label for="adharnnumber">Enter Adhar-Number:-</label>
+                <input type="text" name="adharnumber" id="adharnumber"maxlength="12" />
+            </div>
+              <!-- Display Error Message if available -->
+              <% if (typeof errorMessage !== 'undefined') { %>
+                <p style="color: red; text-align: center;font-size: 13px;"><%= errorMessage %></p>
+            <% } %>
+
+            <div class="box">
+                <input type="submit" value="Submit" class="button">
+            </div>
+            <h3 class="forlogin-form">Not Registered yet?<a href="/newDonorRegister">click here.</a></h3>
+        </form>        
+    </div>     
+</body>
+</html>
